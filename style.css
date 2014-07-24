@@ -1,0 +1,16 @@
+#container{
+	width: 100%;
+	text-align: center;
+}
+
+#trans{
+	width: 600px;
+height: 400px;
+line-height: 200px;
+font-size: 30px;
+background-color: #C7DBFF;
+border: 2px solid #8F9DBB;
+text-align: center;
+margin: 0 auto;
+margin-top: 60px;
+}
