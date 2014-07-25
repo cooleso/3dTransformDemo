@@ -1,31 +1,36 @@
+	// ждем, пока весь контент DOM загрузится
+	document.addEventListener('DOMContentLoaded', run, false);
 
-document.addEventListener('DOMContentLoaded', run, false);
-
-function run(){
-	var cnt = document.querySelector('#container');
-	var trans = document.querySelector('#trans');
-	var cntHeight = cnt.clientHeight,
-		cntWidth = cnt.clientWidth,
-		dy = cnt.clientTop + cnt.offsetTop + cnt.style.getPropertyValue('margin-top');
-		;
-
-	console.warn(cntHeight, cntWidth, dy);
-
-	// значение для css
-	// все совпадает с координтами, только в css подставляем наоборот
-	var transform = {x:0, y:0, yMax: 30, xMax:60};
-//
-	trans.style.setProperty('transform', 'perspective(0px) rotateY(24.960629921259844deg) rotateX(10.414480587618048deg)');
-
-	cnt.addEventListener('mousemove', function(e){
+	function run(){
+		var cnt = document.querySelector('#container');
+		var trans = document.querySelector('#trans');
+		var trans1 = document.querySelector('#trans1');
+		var trans2 = document.querySelector('#trans2');
 		
-		var x = e.x,
-			y = e.y - dy;
-		console.warn(x, y);	
-		transform.x = e.x/cntWidth*transform.xMax - transform.xMax/2;// -30 - 30, 0 в центре
-		transform.y = (cntHeight-e.y)/cntHeight*transform.yMax;	
-		trans.style.setProperty('transform', 'perspective(0px) rotateY('+ transform.x +'deg) rotateX('+transform.y+'deg)');
-			// x,y
-	})
+		var cntHeight = cnt.clientHeight,// высота и ширина DIV, по которому отслеживаем движение мыши
+			cntWidth = cnt.clientWidth,
+			// отступ над элементом
+			dy = cnt.clientTop + cnt.offsetTop + cnt.style.getPropertyValue('margin-top');
+			;
+		
+		var transform = {x:0, y:0, yMax: 40, xMax:60};
+		// обработчик событий перемещения мыши по #container
+		cnt.addEventListener('mousemove', setTransform);
+		//для Chrome нужно добавить еще одно событие для #trans (он перекрывает #container и событие не срабатывает)
+		trans.addEventListener('mousemove', setTransform);
+		// обработчик события mousemove
+		function setTransform(e){
+			// позиция мыши относительно #container
+			var x = e.clientX,
+				y = e.clientY - dy;		
+			// считаем значения для css 
+			// для #trans1 и #trans2
+			transform.x = -e.x/cntWidth*transform.xMax + transform.xMax/2;// -30 - 30, 0 в центре
+			transform.y = (cntHeight-e.y)/cntHeight*transform.yMax;	
+			transform2 = {x: (transform.x-5), y: transform.y/1.4};
+			// устанавливаем значения css
+			trans1.style.setProperty('transform', 'perspective(0px) rotateY('+ transform.x +'deg) rotateX('+transform.y+'deg)');
+			trans2.style.setProperty('transform', 'perspective(0px) rotateY('+ transform2.x +'deg) rotateX('+transform2.y+'deg)');
+		}
 
-}
+	}

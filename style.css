@@ -1,16 +1,47 @@
 #container{
 	width: 100%;
 	text-align: center;
+	z-index:2;
+	height: 400px;
+	position: absolute;
+	margin-top: 60px;
+	top:0px;
 }
 
 #trans{
-	width: 600px;
+width: 600px;
 height: 400px;
-line-height: 200px;
-font-size: 30px;
+
+
 background-color: #C7DBFF;
 border: 2px solid #8F9DBB;
 text-align: center;
 margin: 0 auto;
 margin-top: 60px;
+}
+
+#trans1{
+position: absolute;
+height: 400px;
+width: 600px;
+}
+
+#trans2{
+position:absolute;
+height: 400px;
+width: 600px;
+}
+
+.header1 {
+text-align: center;
+font-size: 40px;
+line-height:100px;
+width:100%;
+}
+.header2 {
+font-size: 32px;
+margin-top: 70px;
+width: 100%;
+position: absolute;
+	
 }

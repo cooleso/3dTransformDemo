@@ -7,10 +7,23 @@
 <body>
 
 	<script type="text/javascript" src="script.js"></script>
-	<div id="container">
+		<!-- контейнер содержит элементы, кототые будем вращать -->
 		<div id="trans">
-			This text must be rotate
+			
+			<div id="trans1">
+				<div class="header1">
+					This text must be rotate
+				</div>
+			</div>
+			
+			<div id="trans2">
+				<div class="header2">
+					3D Rotation in action
+				</div>
+			</div>
 		</div>
+	<!-- контейнер для отслеживания событий мыши. его ставим в конце для IE, так как он неправильно вычисляет позицию курсора относительно div, если этот div перекрывают другие элементы -->	
+	<div id="container">
 	</div>
 </body>
 
